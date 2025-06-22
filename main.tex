@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{tikz}
+\usepackage{rubikcube,rubikrotation,rubikpatterns}
+\usepackage{multicol}
+\usepackage{xstring}
+\pagestyle{empty}
+\overfullrule=5mm
+
+\newcommand{\formatRubikSequence}[1]{
+\StrSubstitute{#1}{,}{ }[\rubiktmp]%
+\StrSubstitute{\rubiktmp}{p}{'}[\rubiktmp]%
+\rubiktmp
+}
+
+% #1: drawings on the cube
+% #2: name of the algorithm
+% #3: sequence
+\newcommand{\alg}[3][]{
+	\RubikCubeSolved%
+	\RubikRotation{x2,yp}%
+	\RubikRotation{#3,<inverse>}%
+	\ShowCube{2cm}{0.45}{%
+		\DrawRubikFaceUpSide%
+		#1
+	}
+	\hspace{0.2cm}\textbf{#2:}\formatRubikSequence{\SequenceShort}
+}
+
+\begin{document}
+\begin{center}
+	{\Huge{\textbf{2LLL}}}
+\end{center}
+
+\input{ocll.tex}
+\input{cp.tex}
+\input{epll.tex}
+\pagebreak
+\input{pll.tex}
+
+\end{document}
