@@ -21,6 +21,12 @@
 	\RubikRotation{x2,yp}%
 	% sanitizing the sequence because the rubik package doesn’t like R2p
 	\StrSubstitute{#3}{2p}{2}[\seqtmp]
+	\StrSubstitute{\seqtmp}{r}{Rw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{u}{Uw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{f}{Fw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{b}{Bw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{l}{Lw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{d}{Dw}[\seqtmp]
 	\RubikRotation{\seqtmp,<inverse>}%
 	\ShowCube{2cm}{0.45}{%
 		\DrawRubikFaceUpSide%
