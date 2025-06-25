@@ -28,7 +28,7 @@
 	\StrSubstitute{\seqtmp}{l}{Lw}[\seqtmp]
 	\StrSubstitute{\seqtmp}{d}{Dw}[\seqtmp]
 	\RubikRotation{\seqtmp,<inverse>}%
-	\ShowCube{2cm}{0.45}{%
+	\noindent\ShowCube{2cm}{0.45}{%
 		\DrawRubikFaceUpSide%
 		#1
 	}
@@ -38,7 +38,7 @@
 
 \begin{document}
 \begin{center}
-	{\Huge{\textbf{2LLL}}}
+	{\Huge{\textbf{2LLL (2 Look Last Layer)}}}
 \end{center}
 
 \input{ocll.tex}
