@@ -6,6 +6,7 @@
 \usepackage{xstring}
 \pagestyle{empty}
 \overfullrule=5mm
+\usepackage{wrapfig}
 
 \newcommand{\formatRubikSequence}[1]{
 \StrSubstitute{#1}{,}{ }[\rubiktmp]%
@@ -27,12 +28,13 @@
 	\StrSubstitute{\seqtmp}{b}{Bw}[\seqtmp]
 	\StrSubstitute{\seqtmp}{l}{Lw}[\seqtmp]
 	\StrSubstitute{\seqtmp}{d}{Dw}[\seqtmp]
-	\RubikRotation{\seqtmp,<inverse>}%
+	\RubikRotation{[#2],\seqtmp,<inverse>}%
 	\noindent\ShowCube{2cm}{0.45}{%
 		\DrawRubikFaceUpSide%
 		#1
 	}
 	\hspace{0.2cm}\textbf{#2:}\formatRubikSequence{#3}
+	\IfStrEq{#4}{}{}{\par\hspace{2.2cm}#4}
 	\vspace{0.2cm}
 }
 
