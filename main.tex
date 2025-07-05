@@ -35,8 +35,12 @@
 		\DrawRubikFaceUpSide%
 		#1
 	}
-	\hspace{0.2cm}\textbf{#2:}\formatRubikSequence{#3}
-	\IfStrEq{#4}{}{}{\par\hspace{2.2cm}#4}
+	\hspace{0.2cm}
+	\begin{minipage}{10cm}
+		\textbf{#2:}\formatRubikSequence{#3}
+
+		#4
+	\end{minipage}
 	\vspace{0.2cm}
 }
 
