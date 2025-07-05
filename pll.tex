@@ -1,46 +1,10 @@
 \section{PLL (Permutation of the Last Layer)}
 
 \subsection{Adjacent corner swap}
-
-\alg[{\draw[->, thick] (2.5, 0.5) -- (0.5,2.4);
-	\draw[->, thick] (0.5,2.5) -- (2.5,2.5);
-	\draw[->, thick] (2.5,2.4) -- (2.5,0.6);
-}]{Aa perm}{x,Rp,U,Rp,D2,R,Up,Rp,D2,R2,xp}{}
-
-\alg[{
-	\draw[->,thick] (0.5,0.5) -- (2.5,0.5);
-	\draw[->,thick] (2.5,0.6) -- (2.5,2.5);
-	\draw[->,thick] (2.4,2.5) -- (0.5,0.6);
-}]{Ab Perm}{x,R2,D2,R,U,Rp,D2,R,Up,R,xp}{}
-
-\alg{F perm}{Rp,Up,Fp,R,U,Rp,Up,Rp,F,R2,Up,Rp,Up,R,U,Rp,U,R}{}
-
-\alg{Ga perm}{R2,U,Rp,U,Rp,Up,R,Up,R2,Up,D,Rp,U,R,Dp}{}
-
-\alg{Gb perm}{Rp,Up,R,U,Dp,R2,U,Rp,U,R,Up,R,Up,R2p,D}{}
-
-\alg{Gc perm}{R2p,Up,R,Up,R,U,Rp,U,R2,U,Dp,R,Up,Rp,D}{}
-
-\alg{Gd perm}{R,U,Rp,Up,D,R2,Up,R,Up,Rp,U,Rp,U,R2,Dp}{}
-
-\alg{Ja perm}{x,R2p,F,R,Fp,R,U2p,rp,U,r,U2p,xp}{}
-
-\alg{Jb perm}{R,U,Rp,Fp,R,U,Rp,Up,Rp,F,R2,Up,Rp}{}
-
-\alg{Ra perm}{R,Up,Rp,Up,R,U,R,D,Rp,Up,R,Dp,Rp,U2,Rp}{}
-
-\alg{Rb perm}{Rp,U2p,R,U2,Rp,F,R,U,Rp,Up,Rp,Fp,R2}{}
-
-\alg{T perm}{R,U,Rp,Up,Rp,F,R2,Up,Rp,Up,R,U,Rp,Fp}{}
+\input{adjcp.tex}
 
 \subsection{Diagonal corner swap}
+\input{diagcp.tex}
 
-\alg{E perm}{xp,R,Up,Rp,D,R,U,Rp,Dp,R,U,Rp,D,R,Up,Rp,Dp,x}{}
-
-\alg{Na perm}{R,U,Rp,U,R,U,Rp,Fp,R,U,Rp,Up,Rp,F,R2,Up,Rp,U2,R,Up,Rp}{}
-
-\alg{Nb perm}{rp,Dp,F,r,Up,rp,Fp,D,r2,U,rp,Up,rp,F,r,Fp}{}
-
-\alg{V perm}{R,Up,R,U,Rp,D,R,Dp,R,Up,D,R2p,U,R2,Dp,R2p}{}
-
-\alg{Y perm}{F,R,Up,Rp,Up,R,U,Rp,Fp,R,U,Rp,Up,Rp,F,R,Fp}{}
+\subsection{EPLL (Edge Permutation of the Last Layer)}
+\input{epll.tex}
