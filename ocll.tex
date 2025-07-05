@@ -2,81 +2,19 @@
 
 \begin{multicols}{2}
 
-\RubikCubeGreyAll
-\RubikFaceUp XYX YYY YYX
-\RubikFaceFront XXY XXXXXX
-\RubikFaceRight XXY XXXXXX
-\RubikFaceBack XXY XXXXXX
-\RubikFaceLeft XXX XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.45cm}\textbf{Sune:} (R U R' U) R U2' R'
-\vspace{0.2cm}
+	\algoll{Sune}{(R,U,Rp,U),R,U2p,Rp}{}
 
-\RubikCubeGreyAll
-\RubikFaceUp XYY YYY XYX
-\RubikFaceFront YXX XXXXXX
-\RubikFaceRight XXX XXXXXX
-\RubikFaceBack YXX XXXXXX
-\RubikFaceLeft YXX XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.45cm}\textbf{Antisune:} R U2 R' U' R U' R'
-\vspace{0.2cm}
+	\algoll{Antisune}{R,U2,Rp,Up,R,Up,Rp}{}
 
-\RubikCubeGreyAll
-\RubikFaceUp XYX YYY YYY
-\RubikFaceFront XXX XXXXXX
-\RubikFaceRight XXX XXXXXX
-\RubikFaceBack YXY XXXXXX
-\RubikFaceLeft XXX XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.45cm}\textbf{U:} R2' D' (R U2 R') D (R U2 R)
-\vspace{0.2cm}
+	\algoll{U}{R2p,Dp,(R,U2,Rp),D,(R,U2,R)}{}
 
-\RubikCubeGreyAll
-\RubikFaceUp XYY YYY XYY
-\RubikFaceFront YXX XXXXXX
-\RubikFaceRight XXX XXXXXX
-\RubikFaceBack XXY XXXXXX
-\RubikFaceLeft XXX XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.45cm}\textbf{T:} (r U R' U') (r' F R F')
-\vspace{0.2cm}
+	\algoll{T}{(r,U,Rp,Up),(rp,F,R,Fp)}{}
 
-\RubikCubeGreyAll
-\RubikFaceUp YYX YYY XYY
-\RubikFaceFront YXX XXXXXX
-\RubikFaceRight XXY XXXXXX
-\RubikFaceBack XXX XXXXXX
-\RubikFaceLeft XXX XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.45cm}\textbf{L:} (F R' F') (r U R U') r'
-\vspace{0.2cm}
+	\algoll{L}{(F,Rp,Fp),(r,U,R,Up),rp}{}
 
-\RubikCubeGreyAll
-\RubikFaceUp XYX YYY XYX
-\RubikFaceFront XXX XXX XXX
-\RubikFaceRight YXY XXX XXX
-\RubikFaceBack XXX XXXXXX
-\RubikFaceLeft YXY XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.45cm}\textbf{H:} (R U) (R' U) (R U') (R' U) (R U2') R'
-\vspace{0.2cm}
+	\algoll{H}{(R,U,Rp,U),(R,Up,Rp,U),(R,U2p,Rp)}{}
 
-\RubikCubeGreyAll
-\RubikFaceUp XYX YYY XYX
-\RubikFaceFront XXY XXXXXX
-\RubikFaceRight XXX XXXXXX
-\RubikFaceBack YXX XXXXXX
-\RubikFaceLeft YXY XXXXXX
-	\noindent\ShowCube{2cm}{0.45}{
-	\DrawRubikFaceUpSide}
-\hspace{0.2cm}\textbf{Pi:} R' U2' (R2 U R2' U) R2 U2' R'
+	\algoll{Pi}{Rp,U2p,(R2,U,R2p,U),R2,U2p,Rp}{}
 
 \end{multicols}
 

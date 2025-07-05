@@ -7,6 +7,7 @@
 \pagestyle{empty}
 \overfullrule=5mm
 \usepackage{wrapfig}
+\usepackage{ifthen}
 
 \newcommand{\formatRubikSequence}[1]{
 \StrSubstitute{#1}{,}{ }[\rubiktmp]%
@@ -19,6 +20,28 @@
 % #3: sequence
 \newcommand{\alg}[4][]{
 	\RubikCubeSolved%
+	\RubikRotation{x2,yp}%
+	% sanitizing the sequence because the rubik package doesn’t like R2p
+	\StrSubstitute{#3}{2p}{2}[\seqtmp]
+	\StrSubstitute{\seqtmp}{r}{Rw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{u}{Uw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{f}{Fw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{b}{Bw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{l}{Lw}[\seqtmp]
+	\StrSubstitute{\seqtmp}{d}{Dw}[\seqtmp]
+	\RubikRotation{[#2],\seqtmp,<inverse>}%
+	\noindent\ShowCube{2cm}{0.45}{%
+		\DrawRubikFaceUpSide%
+		#1
+	}
+	\hspace{0.2cm}\textbf{#2:}\formatRubikSequence{#3}
+	\IfStrEq{#4}{}{}{\par\hspace{2.2cm}#4}
+	\vspace{0.2cm}
+}
+
+\newcommand{\algoll}[4][]{
+	\RubikCubeGreyAll%
+	\RubikFaceDownAll{Y}%
 	\RubikRotation{x2,yp}%
 	% sanitizing the sequence because the rubik package doesn’t like R2p
 	\StrSubstitute{#3}{2p}{2}[\seqtmp]
