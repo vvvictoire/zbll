@@ -9,6 +9,28 @@
 \overfullrule=5mm
 \usepackage{wrapfig}
 \usepackage{ifthen}
+\usepackage{luacode}
+
+\begin{luacode*}
+	function sanitize_rubik_sequence(sequence)
+		fix_2p,_ = string.gsub(sequence, "2p", "2")
+		fix_wide,_ = string.gsub(fix_2p, "[rufldb]", function(s)
+			return string.upper(s) .. "w"
+		end)
+		fix_3,_ = string.gsub(fix_wide, "3", "p")
+		tex.print(fix_3)
+	end
+\end{luacode*}
+
+\begin{luacode*}
+	function select_oll(param)
+		if param == "oll" then
+			tex.print('\\RubikCubeGreyAll\\RubikFaceDownAll{Y}')
+		else
+			tex.print('\\RubikCubeSolved')
+		end
+	end
+\end{luacode*}
 
 \newcommand{\formatRubikSequence}[1]{
 \StrSubstitute{#1}{,}{ }[\rubiktmp]%
@@ -16,53 +38,20 @@
 \rubiktmp
 }
 
-% #1: drawings on the cube
+% #1: oll?
 % #2: name of the algorithm
 % #3: sequence
 \newcommand{\alg}[4][]{
-	\RubikCubeSolved%
+	\directlua{select_oll("#1")}
 	\RubikRotation{x2,yp}%
-	% sanitizing the sequence because the rubik package doesn’t like R2p
-	\StrSubstitute{#3}{2p}{2}[\seqtmp]
-	\StrSubstitute{\seqtmp}{r}{Rw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{u}{Uw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{f}{Fw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{b}{Bw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{l}{Lw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{d}{Dw}[\seqtmp]
-	\RubikRotation{[#2],\seqtmp,<inverse>}%
-	\noindent\ShowCube{2cm}{0.45}{%
-		\DrawRubikFaceUpSide%
-		#1
-	}
+	\RubikRotation{[#2],\directlua{sanitize_rubik_sequence("#3")},<inverse>}%
+	\noindent\ShowCube{2cm}{0.45}{\DrawRubikFaceUpSide}%
 	\hspace{0.2cm}
 	\begin{minipage}{10cm}
 		\textbf{#2:}\formatRubikSequence{#3}
 
 		#4
 	\end{minipage}
-	\vspace{0.2cm}
-}
-
-\newcommand{\algoll}[4][]{
-	\RubikCubeGreyAll%
-	\RubikFaceDownAll{Y}%
-	\RubikRotation{x2,yp}%
-	% sanitizing the sequence because the rubik package doesn’t like R2p
-	\StrSubstitute{#3}{2p}{2}[\seqtmp]
-	\StrSubstitute{\seqtmp}{r}{Rw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{u}{Uw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{f}{Fw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{b}{Bw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{l}{Lw}[\seqtmp]
-	\StrSubstitute{\seqtmp}{d}{Dw}[\seqtmp]
-	\RubikRotation{[#2],\seqtmp,<inverse>}%
-	\noindent\ShowCube{2cm}{0.45}{%
-		\DrawRubikFaceUpSide%
-		#1
-	}
-	\hspace{0.2cm}\textbf{#2:}\formatRubikSequence{#3}
-	\IfStrEq{#4}{}{}{\par\hspace{2.2cm}#4}
 	\vspace{0.2cm}
 }
 

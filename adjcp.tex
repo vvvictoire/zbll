@@ -1,13 +1,14 @@
-\alg[{\draw[->, thick] (2.5, 0.5) -- (0.5,2.4);
-	\draw[->, thick] (0.5,2.5) -- (2.5,2.5);
-	\draw[->, thick] (2.5,2.4) -- (2.5,0.6);
-}]{Aa perm}{x,Rp,U,Rp,D2,R,Up,Rp,D2,R2,xp}{}
+\alg{Aa perm}{x,Rp,U,Rp,D2,R,Up,Rp,D2,R2,xp}{
+R' D' R U' R' D R U2 R' D' R U' R' D R
 
-\alg[{
-	\draw[->,thick] (0.5,0.5) -- (2.5,0.5);
-	\draw[->,thick] (2.5,0.6) -- (2.5,2.5);
-	\draw[->,thick] (2.4,2.5) -- (0.5,0.6);
-}]{Ab Perm}{x,R2,D2,R,U,Rp,D2,R,Up,R,xp}{}
+R' U' R U' R' F' R U R' U' R' F R U2 R
+
+R' F' R U R U' R2' F R U R' F' R F
+
+R F' R' U R' D R U' R' D' R2 F R'}
+
+
+\alg{Ab Perm}{x,R2,D2,R,U,Rp,D2,R,Up,R,xp}{}
 
 \alg{F perm}{Rp,Up,Fp,R,U,Rp,Up,Rp,F,R2,Up,Rp,Up,R,U,Rp,U,R}{}
 
@@ -27,4 +28,4 @@
 
 \alg{Rb perm}{Rp,U2p,R,U2,Rp,F,R,U,Rp,Up,Rp,Fp,R2}{}
 
-\alg{T perm}{R,U,Rp,Up,Rp,F,R2,Up,Rp,Up,R,U,Rp,Fp}{}
+\alg{T perm}{(R,U,Rp,Up),Rp,F,R2,Up,(Rp,Up,R,U),Rp,Fp}{}
