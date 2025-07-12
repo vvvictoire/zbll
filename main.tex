@@ -11,26 +11,7 @@
 \usepackage{ifthen}
 \usepackage{luacode}
 
-\begin{luacode*}
-	function sanitize_rubik_sequence(sequence)
-		fix_2p,_ = string.gsub(sequence, "2p", "2")
-		fix_wide,_ = string.gsub(fix_2p, "[rufldb]", function(s)
-			return string.upper(s) .. "w"
-		end)
-		fix_3,_ = string.gsub(fix_wide, "3", "p")
-		tex.print(fix_3)
-	end
-\end{luacode*}
-
-\begin{luacode*}
-	function select_oll(param)
-		if param == "oll" then
-			tex.print('\\RubikCubeGreyAll\\RubikFaceDownAll{Y}')
-		else
-			tex.print('\\RubikCubeSolved')
-		end
-	end
-\end{luacode*}
+\directlua{rubiklua = require("rubik")}
 
 \newcommand{\formatRubikSequence}[1]{
 \StrSubstitute{#1}{,}{ }[\rubiktmp]%
@@ -42,9 +23,9 @@
 % #2: name of the algorithm
 % #3: sequence
 \newcommand{\alg}[4][]{
-	\directlua{select_oll("#1")}
+	\directlua{rubiklua.select_oll("#1")}
 	\RubikRotation{x2,yp}%
-	\RubikRotation{[#2],\directlua{sanitize_rubik_sequence("#3")},<inverse>}%
+	\RubikRotation{[#2],\directlua{rubiklua.sanitize_rubik_sequence("#3")},<inverse>}%
 	\noindent\ShowCube{2cm}{0.45}{\DrawRubikFaceUpSide}%
 	\hspace{0.2cm}
 	\begin{minipage}{10cm}
@@ -57,11 +38,28 @@
 
 \begin{document}
 \begin{center}
-	{\Huge{\textbf{2LLL (2 Look Last Layer)}}}
+	{\Huge{\textbf{ZZ OCLL-PLL}}}
 \end{center}
+
 \begin{multicols}{2}
+\section{OCLL (Orientation of Corners of Last Layer)}
+
 \input{ocll.tex}
-\input{pll.tex}
+
+\section{PLL (Permutation of the Last Layer)}
+
+\subsection{Adjacent corner swap}
+
+\input{adjcp.tex}
+
+\subsection{Diagonal corner swap}
+
+\input{diagcp.tex}
+
+\subsection{EPLL (Edge Permutation of the Last Layer)}
+
+\input{epll.tex}
+
 \end{multicols}
 
 \end{document}
