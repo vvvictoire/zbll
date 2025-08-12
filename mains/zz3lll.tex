@@ -1,0 +1,62 @@
+\documentclass[landscape,a4paper]{article}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{rubikcube,rubikrotation,rubikpatterns}
+\usepackage{multicol}
+\usepackage{xstring}
+\pagestyle{headings}
+%\pagestyle{empty}
+\overfullrule=5mm
+\usepackage{wrapfig}
+\usepackage{ifthen}
+\usepackage{luacode}
+
+\directlua{rubiklua = require("rubik")}
+
+\newcommand{\formatRubikSequence}[1]{
+\StrSubstitute{#1}{,}{ }[\rubiktmp]%
+\StrSubstitute{\rubiktmp}{p}{'}[\rubiktmp]%
+\rubiktmp
+}
+
+% #1: oll?
+% #2: name of the algorithm
+% #3: sequence
+\newcommand{\alg}[4][]{
+	\directlua{rubiklua.select_oll("#1")}
+	\RubikRotation{x2,yp}%
+	\RubikRotation{[#2],\directlua{rubiklua.sanitize_rubik_sequence("#3")},<inverse>}%
+	\noindent\ShowCube{2cm}{0.45}{\DrawRubikFaceUpSide}%
+	\hspace{0.2cm}
+	\begin{minipage}{10cm}
+		\textbf{#2:}\formatRubikSequence{#3}
+
+		#4
+	\end{minipage}
+	\vspace{0.2cm}
+}
+
+\begin{document}
+\begin{center}
+	{\Huge{\textbf{ZZ 3 Look-OCLL-PLL}}}
+\end{center}
+
+\begin{multicols}{2}
+\section{OCLL (Orientation of Corners of Last Layer)}
+
+\input{algs/ocll.tex}
+
+\section{PLL (Permutation of the Last Layer)}
+
+\subsection{CPLL (Corner Permutation of the Last Layer)}
+
+\input{algs/cpll.tex}
+
+
+\subsection{EPLL (Edge Permutation of the Last Layer)}
+
+\input{algs/epll.tex}
+
+\end{multicols}
+
+\end{document}
